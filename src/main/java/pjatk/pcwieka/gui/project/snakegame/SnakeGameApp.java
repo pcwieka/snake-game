@@ -1,12 +1,14 @@
 package pjatk.pcwieka.gui.project.snakegame;
 
-import org.springframework.boot.SpringApplication;
+import javafx.application.Application;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import pjatk.pcwieka.gui.project.snakegame.application.SnakeGameJavaFxApp;
 
 @SpringBootApplication
 public class SnakeGameApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(SnakeGameApp.class, args);
+
+        Application.launch(SnakeGameJavaFxApp.class, args);
     }
 }
