@@ -24,14 +24,14 @@ public class StageInitializer {
         this.applicationContext = applicationContext;
     }
 
-    public <T> void initialize(Class<T> tClass) {
+    public <T extends Controller> void initialize(Class<T> tClass) {
 
         this.initialize(tClass,null);
     }
 
-    public <T> void initialize(Class<T> tClass, Model model) {
+    public <T extends Controller> void initialize(Class<T> tClass, Model model) {
 
-        Controller controller = (Controller) applicationContext.getBean(tClass);
+        T controller = applicationContext.getBean(tClass);
         controller.setModel(model);
 
         Parent root = fxWeaver.loadView(tClass);
