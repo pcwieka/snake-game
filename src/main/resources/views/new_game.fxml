@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="218.0" prefWidth="349.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pjatk.pcwieka.gui.project.snakegame.application.controller.NewGameController">
+   <center>
+      <VBox alignment="CENTER" prefHeight="205.0" prefWidth="337.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select grid size" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="15.0" />
+               </VBox.margin>
+            </Text>
+            <HBox alignment="CENTER" prefHeight="57.0" prefWidth="305.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select width" />
+                  <Spinner fx:id="selectWidthSpinner" prefHeight="27.0" prefWidth="77.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="57.0" prefWidth="305.0" spacing="9.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select height" />
+                  <Spinner fx:id="selectHeightSpinner" prefHeight="27.0" prefWidth="77.0" />
+               </children>
+            </HBox>
+            <Button fx:id="playButton" mnemonicParsing="false" onAction="#handlePlayButtonAction" prefHeight="27.0" prefWidth="70.0" text="Play">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
