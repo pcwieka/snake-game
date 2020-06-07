@@ -7,7 +7,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 import pjatk.pcwieka.gui.project.snakegame.SnakeGameApp;
 import pjatk.pcwieka.gui.project.snakegame.application.controller.MainController;
-import pjatk.pcwieka.gui.project.snakegame.infrastructure.controller.MainStageHolder;
+import pjatk.pcwieka.gui.project.snakegame.infrastructure.controller.MainStageProvider;
 import pjatk.pcwieka.gui.project.snakegame.infrastructure.controller.StageInitializer;
 
 public class SnakeGameJavaFxApp extends Application {
@@ -27,8 +27,8 @@ public class SnakeGameJavaFxApp extends Application {
     @Override
     public void start(Stage stage) {
 
-        MainStageHolder mainStageHolder = applicationContext.getBean(MainStageHolder.class);
-        mainStageHolder.setStage(stage);
+        MainStageProvider mainStageProvider = applicationContext.getBean(MainStageProvider.class);
+        mainStageProvider.setStage(stage);
 
         StageInitializer stageInitializer = applicationContext.getBean(StageInitializer.class);
         stageInitializer.initialize(MainController.class);
