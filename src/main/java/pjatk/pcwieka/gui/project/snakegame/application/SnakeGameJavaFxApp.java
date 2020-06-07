@@ -2,14 +2,13 @@ package pjatk.pcwieka.gui.project.snakegame.application;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import net.rgielen.fxweaver.core.FxWeaver;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 import pjatk.pcwieka.gui.project.snakegame.SnakeGameApp;
-import pjatk.pcwieka.gui.project.snakegame.application.controller.GameController;
+import pjatk.pcwieka.gui.project.snakegame.application.controller.MainController;
+import pjatk.pcwieka.gui.project.snakegame.infrastructure.controller.MainStageHolder;
+import pjatk.pcwieka.gui.project.snakegame.infrastructure.controller.StageInitializer;
 
 public class SnakeGameJavaFxApp extends Application {
 
@@ -28,11 +27,11 @@ public class SnakeGameJavaFxApp extends Application {
     @Override
     public void start(Stage stage) {
 
-        FxWeaver fxWeaver = applicationContext.getBean(FxWeaver.class);
-        Parent root = fxWeaver.loadView(GameController.class);
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        MainStageHolder mainStageHolder = applicationContext.getBean(MainStageHolder.class);
+        mainStageHolder.setStage(stage);
+
+        StageInitializer stageInitializer = applicationContext.getBean(StageInitializer.class);
+        stageInitializer.initialize(MainController.class);
     }
 
     @Override
