@@ -1,10 +1,10 @@
 package pjatk.pcwieka.gui.project.snakegame.application.controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import pjatk.pcwieka.gui.project.snakegame.application.model.Model;
 import pjatk.pcwieka.gui.project.snakegame.infrastructure.controller.StageInitializer;
 import pjatk.pcwieka.gui.project.snakegame.infrastructure.shutdown.ApplicationShutdowner;
 import java.net.URL;
@@ -12,7 +12,7 @@ import java.util.ResourceBundle;
 
 @Component
 @FxmlView("/views/main.fxml")
-public class MainController implements Initializable {
+public class MainController implements Controller {
 
     private ApplicationShutdowner applicationShutdowner;
     private StageInitializer stageInitializer;
@@ -25,7 +25,12 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //noop
+    }
 
+    @Override
+    public void setModel(Model model) {
+        //noop
     }
 
     @FXML
