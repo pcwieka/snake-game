@@ -2,7 +2,7 @@ package pjatk.pcwieka.gui.project.snakegame.application.controller;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 public class HighScoresController implements Controller<HighScoresModel> {
 
     @FXML
-    private ScrollPane scrollPane;
+    private TableView scoreTableView;
 
     private StageInitializer stageInitializer;
     private HighScoresModel highScoresModel;
@@ -42,7 +42,7 @@ public class HighScoresController implements Controller<HighScoresModel> {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         highScoresModel = new HighScoresModel(
-            scrollPane,
+            scoreTableView,
             scoreRepository
         );
 
@@ -54,7 +54,7 @@ public class HighScoresController implements Controller<HighScoresModel> {
     @FXML
     private void handleOkayButtonAction() {
 
-        Stage stage = (Stage) scrollPane.getScene().getWindow();
+        Stage stage = (Stage) scoreTableView.getScene().getWindow();
         stage.close();
 
         stageInitializer.initialize(MainController.class);

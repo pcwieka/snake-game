@@ -10,19 +10,13 @@ public class GameModel implements Model {
     private final Snake snake = new Snake();
     private final int cornerSize = 25;
 
-    private int initialSpeed = 1;
+    private int speed = 2;
     private boolean isGameOver = false;
+    private int foodEaten = 0;
 
     private int boardWidth;
     private int boardHeight;
     private Food currentFood;
-
-    public GameModel(int initialSpeed, int boardWidth, int boardHeight) {
-
-        this(boardWidth, boardHeight);
-
-        this.initialSpeed = initialSpeed;
-    }
 
     public GameModel(int boardWidth, int boardHeight) {
         this.boardWidth = boardWidth;
@@ -51,12 +45,24 @@ public class GameModel implements Model {
         this.currentFood = currentFood;
     }
 
-    public synchronized int getInitialSpeed() {
-        return initialSpeed;
+    public synchronized int getFoodEaten() {
+        return foodEaten;
     }
 
-    public synchronized void setInitialSpeed(int initialSpeed) {
-        this.initialSpeed = initialSpeed;
+    public synchronized void addFoodEaten() {
+        this.foodEaten++;
+    }
+
+    public synchronized int getSpeed() {
+        return speed;
+    }
+
+    public synchronized void addSpeed() {
+        this.speed++;
+    }
+
+    public synchronized void reduceSpeed() {
+        this.speed--;
     }
 
     public Snake getSnake() {
@@ -67,7 +73,7 @@ public class GameModel implements Model {
         return isGameOver;
     }
 
-    public synchronized void setGameOver(boolean gameOver) {
-        isGameOver = gameOver;
+    public synchronized void setGameOver() {
+        isGameOver = true;
     }
 }

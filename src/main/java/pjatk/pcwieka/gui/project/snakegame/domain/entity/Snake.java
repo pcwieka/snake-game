@@ -12,6 +12,10 @@ public class Snake {
         body.add(corner);
     }
 
+    public void removeCorner() {
+        body.remove(body.size() - 1);
+    }
+
     public List<Corner> getBody() {
         return body;
     }

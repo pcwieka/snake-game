@@ -2,7 +2,6 @@ package pjatk.pcwieka.gui.project.snakegame.application.model.highScores;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -13,19 +12,17 @@ import java.util.Comparator;
 
 public class HighScoresModel implements Model {
 
-    private ScrollPane parentPane;
+    private TableView scoreTableView;
     private ScoreRepository scoreRepository;
 
-    public HighScoresModel(ScrollPane parentPane, ScoreRepository scoreRepository) {
-        this.parentPane = parentPane;
+    public HighScoresModel(TableView scoreTableView, ScoreRepository scoreRepository) {
+        this.scoreTableView = scoreTableView;
         this.scoreRepository = scoreRepository;
     }
 
     public void createScoreList() {
 
-        TableView tableView = new TableView();
-
-        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        scoreTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         TableColumn<String, Score> playerNameColumn = new TableColumn<>("Player");
         playerNameColumn.setCellValueFactory(new PropertyValueFactory<>("playerName"));
@@ -33,8 +30,8 @@ public class HighScoresModel implements Model {
         TableColumn<String, Score> scoreColumn = new TableColumn<>("Score");
         scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
 
-        tableView.getColumns().add(playerNameColumn);
-        tableView.getColumns().add(scoreColumn);
+        scoreTableView.getColumns().add(playerNameColumn);
+        scoreTableView.getColumns().add(scoreColumn);
 
         ObservableList<Score> scoresData = FXCollections.observableArrayList();
 
@@ -46,9 +43,7 @@ public class HighScoresModel implements Model {
             new ScoreComparator()
         );
 
-        tableView.setItems(scoresData);
-
-        parentPane.setContent(tableView);
+        scoreTableView.setItems(scoresData);
     }
 
     private static class ScoreComparator implements Comparator<Score> {

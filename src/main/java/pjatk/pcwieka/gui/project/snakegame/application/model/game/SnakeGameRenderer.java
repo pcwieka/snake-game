@@ -22,7 +22,13 @@ public class SnakeGameRenderer extends AnimationTimer {
     private final DirectionProvider directionProvider;
     private final GameTimeProvider gameTimeProvider;
 
-    public SnakeGameRenderer(GraphicsContext graphicsContext, GameModel gameModel, FoodService foodService, DirectionProvider directionProvider, GameTimeProvider gameTimeProvider) {
+    public SnakeGameRenderer(
+        GraphicsContext graphicsContext,
+        GameModel gameModel,
+        FoodService foodService,
+        DirectionProvider directionProvider,
+        GameTimeProvider gameTimeProvider
+    ) {
         this.graphicsContext = graphicsContext;
         this.gameModel = gameModel;
         this.foodService = foodService;
@@ -42,7 +48,7 @@ public class SnakeGameRenderer extends AnimationTimer {
             isFirstFoodProvided = true;
         }
 
-        if (now - lastAnimationUpdate >= 1_000_000_000 / gameModel.getInitialSpeed()) {
+        if (now - lastAnimationUpdate >= 1_000_000_000 / gameModel.getSpeed()) {
 
             lastAnimationUpdate = now ;
             renderNextMove();
@@ -74,9 +80,6 @@ public class SnakeGameRenderer extends AnimationTimer {
                 int y = snakeHead.getY();
                 snakeHead.setY(--y);
 
-                if (snakeHead.getY() < 0) {
-                    gameModel.setGameOver(true);
-                }
                 break;
 
             case DOWN:
@@ -84,9 +87,6 @@ public class SnakeGameRenderer extends AnimationTimer {
                 y = snakeHead.getY();
                 snakeHead.setY(++y);
 
-                if (snakeHead.getY() > gameModel.getBoardHeight()) {
-                    gameModel.setGameOver(true);
-                }
                 break;
 
             case LEFT:
@@ -94,9 +94,6 @@ public class SnakeGameRenderer extends AnimationTimer {
                 int x = snakeHead.getX();
                 snakeHead.setX(--x);
 
-                if (snakeHead.getX() < 0) {
-                    gameModel.setGameOver(true);
-                }
                 break;
 
             case RIGHT:
@@ -104,17 +101,21 @@ public class SnakeGameRenderer extends AnimationTimer {
                 x = snakeHead.getX();
                 snakeHead.setX(++x);
 
-                if (snakeHead.getX() > gameModel.getBoardWidth()) {
-                    gameModel.setGameOver(true);
-                }
                 break;
         }
 
         foodService.eatFood();
 
+        // game over
+        if (snakeHead.getY() < 0 || snakeHead.getY() > gameModel.getBoardHeight() ||
+            snakeHead.getX() < 0 || snakeHead.getX() > gameModel.getBoardWidth()) {
+
+            gameModel.setGameOver();
+        }
+
         for (int i = 1; i < snakeBody.size(); i++) {
             if (snakeHead.getX() == snakeBody.get(i).getX() && snakeHead.getY() == snakeBody.get(i).getY()) {
-                gameModel.setGameOver(true);
+                gameModel.setGameOver();
             }
         }
 
@@ -146,7 +147,7 @@ public class SnakeGameRenderer extends AnimationTimer {
         // food scored
         graphicsContext.setFill(Color.WHITE);
         graphicsContext.setFont(new Font("", 15));
-        graphicsContext.fillText("Food: " + (gameModel.getSnake().getBody().size() - 1), 10, 30);
+        graphicsContext.fillText("Food: " + gameModel.getFoodEaten(), 10, 30);
 
         // time
         graphicsContext.setFill(Color.WHITE);
@@ -161,7 +162,9 @@ public class SnakeGameRenderer extends AnimationTimer {
         foodService.renderFood();
 
         // snake
-        for (Corner corner : snakeBody) {
+        for(int i = 0; i < snakeBody.size(); i++) {
+
+            Corner corner = snakeBody.get(i);
 
             graphicsContext.setFill(Color.LIGHTGREEN);
 
@@ -172,7 +175,14 @@ public class SnakeGameRenderer extends AnimationTimer {
                 gameModel.getCornerSize() - 1
             );
 
-            graphicsContext.setFill(Color.GREEN);
+            if (i == 0) {
+
+                graphicsContext.setFill(Color.ORANGE);
+
+            } else {
+
+                graphicsContext.setFill(Color.GREEN);
+            }
 
             graphicsContext.fillRect(
                 corner.getX() * gameModel.getCornerSize(),

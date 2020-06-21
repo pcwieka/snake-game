@@ -29,11 +29,24 @@ public class FoodService {
 
         if (food.getX() == snakeHead.getX() && food.getY() == snakeHead.getY()) {
 
-            snake.addCorner(new Corner(-1, -1));
+            if (food.getColor() == Color.RED) {
+
+                if(snake.getBody().size() > 1) {
+                    snake.removeCorner();
+                }
+
+                gameModel.reduceSpeed();
+
+            } else {
+
+                snake.addCorner(new Corner(-1, -1));
+                gameModel.addSpeed();
+            }
 
             food =  this.provideNewFood();
 
             gameModel.setCurrentFood(food);
+            gameModel.addFoodEaten();
         }
     }
 
@@ -51,9 +64,6 @@ public class FoodService {
                     continue start;
                 }
             }
-
-            int speed = gameModel.getInitialSpeed();
-            gameModel.setInitialSpeed(++speed);
 
             return new Food(foodX, foodY, this.getFoodColor());
         }
@@ -74,27 +84,17 @@ public class FoodService {
 
     private Color getFoodColor() {
 
-        int foodColor = random.nextInt(5);
+        int foodColor = random.nextInt(10);
 
-        Color color = Color.WHITE;
+        Color color;
 
         switch (foodColor) {
 
             case 0:
-                color = Color.PURPLE;
+                color = Color.RED;
                 break;
-            case 1:
-                color = Color.LIGHTBLUE;
-                break;
-            case 2:
+            default:
                 color = Color.YELLOW;
-                break;
-            case 3:
-                color = Color.PINK;
-                break;
-            case 4:
-                color = Color.ORANGE;
-                break;
         }
 
         return color;

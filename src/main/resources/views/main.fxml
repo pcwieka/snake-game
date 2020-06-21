@@ -7,12 +7,12 @@
 
 <BorderPane maxHeight="262.0" maxWidth="476.0" minHeight="262.0" minWidth="476.0" prefHeight="262.0" prefWidth="476.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pjatk.pcwieka.gui.project.snakegame.application.controller.MainController">
    <center>
-      <VBox alignment="CENTER" prefHeight="217.0" prefWidth="385.0" spacing="30.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="217.0" prefWidth="385.0" spacing="30.0" BorderPane.alignment="CENTER" styleClass="background" stylesheets="@../css/background.css">
          <children>
             <Text fx:id="gameNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Snake The Game" />
-            <Button fx:id="newGameButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleNewGameButtonAction" text="New Game" />
-            <Button fx:id="highScoreButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleHighScoreButtonAction" text="High Score" />
-            <Button fx:id="exitButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleExitButtonAction" prefWidth="86.0" text="Exit" textAlignment="CENTER" />
+            <Button fx:id="newGameButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleNewGameButtonAction" text="New Game" styleClass="snake-button" stylesheets="@../css/button.css" />
+            <Button fx:id="highScoreButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleHighScoreButtonAction" text="High Score" styleClass="snake-button" stylesheets="@../css/button.css"/>
+            <Button fx:id="exitButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleExitButtonAction" prefWidth="86.0" text="Exit" textAlignment="CENTER" styleClass="snake-button" stylesheets="@../css/button.css"/>
          </children>
       </VBox>
    </center>
