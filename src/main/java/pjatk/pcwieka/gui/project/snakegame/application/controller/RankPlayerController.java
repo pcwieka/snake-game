@@ -8,6 +8,8 @@ import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pjatk.pcwieka.gui.project.snakegame.application.model.rankPlayer.RankPlayerModel;
+import pjatk.pcwieka.gui.project.snakegame.domain.entity.Score;
+import pjatk.pcwieka.gui.project.snakegame.domain.repository.ScoreRepository;
 import pjatk.pcwieka.gui.project.snakegame.infrastructure.controller.StageInitializer;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,10 +26,15 @@ public class RankPlayerController implements Controller<RankPlayerModel> {
 
     private RankPlayerModel rankPlayerModel;
     private StageInitializer stageInitializer;
+    private ScoreRepository scoreRepository;
 
     @Autowired
-    public RankPlayerController(StageInitializer stageInitializer) {
+    public RankPlayerController(
+        StageInitializer stageInitializer,
+        ScoreRepository scoreRepository
+    ) {
         this.stageInitializer = stageInitializer;
+        this.scoreRepository = scoreRepository;
     }
 
     @Override
@@ -48,9 +55,21 @@ public class RankPlayerController implements Controller<RankPlayerModel> {
     @FXML
     private void handleOkayButtonAction() {
 
+        savePlayerScore();
+
         stageInitializer.initialize(MainController.class);
 
         Stage stage = (Stage) scoreText.getScene().getWindow();
         stage.close();
+    }
+
+    private void savePlayerScore() {
+
+        Score score = new Score(
+            enterYourNameTextField.getText(),
+            rankPlayerModel.getFinalScore()
+        );
+
+        scoreRepository.save(score);
     }
 }

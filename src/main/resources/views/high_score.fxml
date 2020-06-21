@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="416.0" prefWidth="283.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pjatk.pcwieka.gui.project.snakegame.application.controller.HighScoresController">
+   <center>
+      <VBox alignment="CENTER" prefHeight="418.0" prefWidth="288.0" spacing="15.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="High scroes" />
+            <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" prefHeight="316.0" prefWidth="273.0" vbarPolicy="ALWAYS" />
+            <Button fx:id="okayButton" mnemonicParsing="false" onAction="#handleOkayButtonAction" prefHeight="27.0" prefWidth="67.0" text="Okay" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

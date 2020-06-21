@@ -42,7 +42,7 @@ public class MainController implements Controller {
     @FXML
     public void handleHighScoreButtonAction() {
 
-        //stageInitializer.initialize(HighScoreController.class);
+        stageInitializer.initialize(HighScoresController.class);
     }
 
     @FXML
