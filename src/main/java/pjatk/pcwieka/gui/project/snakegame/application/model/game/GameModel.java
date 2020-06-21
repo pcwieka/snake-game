@@ -11,6 +11,7 @@ public class GameModel implements Model {
     private final int cornerSize = 25;
 
     private int initialSpeed = 1;
+    private boolean isGameOver = false;
 
     private int boardWidth;
     private int boardHeight;
@@ -60,5 +61,13 @@ public class GameModel implements Model {
 
     public Snake getSnake() {
         return snake;
+    }
+
+    public synchronized boolean isGameOver() {
+        return isGameOver;
+    }
+
+    public synchronized void setGameOver(boolean gameOver) {
+        isGameOver = gameOver;
     }
 }

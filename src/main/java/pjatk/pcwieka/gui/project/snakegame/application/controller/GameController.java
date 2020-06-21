@@ -14,7 +14,9 @@ import pjatk.pcwieka.gui.project.snakegame.application.model.game.DirectionProvi
 import pjatk.pcwieka.gui.project.snakegame.application.model.game.FoodService;
 import pjatk.pcwieka.gui.project.snakegame.application.model.game.SnakeGameRenderer;
 import pjatk.pcwieka.gui.project.snakegame.domain.enums.Direction;
+import pjatk.pcwieka.gui.project.snakegame.domain.game.GameTimeService;
 import pjatk.pcwieka.gui.project.snakegame.infrastructure.controller.StageInitializer;
+import pjatk.pcwieka.gui.project.snakegame.infrastructure.time.GameTimeProvider;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -27,10 +29,12 @@ public class GameController implements Controller<GameModel> {
 
     private StageInitializer stageInitializer;
     private GameModel gameModel;
+    private GameTimeProvider gameTimeProvider;
 
     @Autowired
-    public GameController(StageInitializer stageInitializer) {
+    public GameController(StageInitializer stageInitializer, GameTimeProvider gameTimeProvider) {
         this.stageInitializer = stageInitializer;
+        this.gameTimeProvider = gameTimeProvider;
     }
 
     @Override
@@ -61,13 +65,17 @@ public class GameController implements Controller<GameModel> {
 
         });
 
+        GameTimeService gameTimeService = new GameTimeService(gameTimeProvider, gameModel);
+        gameTimeService.start();
+
         FoodService foodService = new FoodService(graphicsContext, gameModel);
 
         SnakeGameRenderer snakeGameRenderer = new SnakeGameRenderer(
             graphicsContext,
             gameModel,
             foodService,
-            directionProvider
+            directionProvider,
+            gameTimeProvider
         );
 
         snakeGameRenderer.start();
