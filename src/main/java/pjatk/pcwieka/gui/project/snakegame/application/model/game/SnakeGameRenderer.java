@@ -1,9 +1,11 @@
 package pjatk.pcwieka.gui.project.snakegame.application.model.game;
 
 import javafx.animation.AnimationTimer;
+import javafx.geometry.VPos;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import pjatk.pcwieka.gui.project.snakegame.domain.entity.Corner;
 import pjatk.pcwieka.gui.project.snakegame.domain.entity.Snake;
 import pjatk.pcwieka.gui.project.snakegame.infrastructure.time.GameTimeProvider;
@@ -120,10 +122,12 @@ public class SnakeGameRenderer extends AnimationTimer {
 
             graphicsContext.setFill(Color.RED);
             graphicsContext.setFont(new Font("", 30));
+            graphicsContext.setTextAlign(TextAlignment.CENTER);
+            graphicsContext.setTextBaseline(VPos.CENTER);
 
             graphicsContext.fillText(
                 "GAME OVER",
-                gameModel.getBoardWidth() * gameModel.getCornerSize() / 2 - 200,
+                gameModel.getBoardWidth() * gameModel.getCornerSize() / 2,
                 gameModel.getBoardHeight() * gameModel.getCornerSize() / 2
             );
 
@@ -139,10 +143,10 @@ public class SnakeGameRenderer extends AnimationTimer {
             gameModel.getBoardHeight() * gameModel.getCornerSize()
         );
 
-        // score
+        // food scored
         graphicsContext.setFill(Color.WHITE);
         graphicsContext.setFont(new Font("", 15));
-        graphicsContext.fillText("Food: " + (gameModel.getInitialSpeed()), 10, 30);
+        graphicsContext.fillText("Food: " + (gameModel.getSnake().getBody().size() - 1), 10, 30);
 
         // time
         graphicsContext.setFill(Color.WHITE);
