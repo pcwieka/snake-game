@@ -15,9 +15,11 @@ public class ScoreEvaluationProvider {
 
     public int evaluateFinalScore() {
 
-        return 1000 * (gameModel.getSnake().getBody().size() - 1)
+        int snakeLenght = (gameModel.getSnake().getBody().size() - 1);
+
+        return 1000 * snakeLenght * snakeLenght
             * gameModel.getInitialSpeed()
-            * gameTimeProvider.getGameTimeInSeconds()
+            / gameTimeProvider.getGameTimeInSeconds()
             / (gameModel.getBoardWidth() * gameModel.getBoardHeight());
     }
 }
