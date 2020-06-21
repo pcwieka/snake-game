@@ -50,12 +50,18 @@ public class RankPlayerController implements Controller<RankPlayerModel> {
                 rankPlayerModel.getFinalScore()
             )
         );
+
+        if (rankPlayerModel.getFinalScore() == 0) {
+            enterYourNameTextField.setDisable(true);
+        }
     }
 
     @FXML
     private void handleOkayButtonAction() {
 
-        savePlayerScore();
+        if (rankPlayerModel.getFinalScore() > 0) {
+            savePlayerScore();
+        }
 
         stageInitializer.initialize(MainController.class);
 

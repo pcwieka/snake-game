@@ -1,4 +1,4 @@
-package pjatk.pcwieka.gui.project.snakegame.application.model.game;
+package pjatk.pcwieka.gui.project.snakegame.domain.game;
 
 import pjatk.pcwieka.gui.project.snakegame.domain.enums.Direction;
 

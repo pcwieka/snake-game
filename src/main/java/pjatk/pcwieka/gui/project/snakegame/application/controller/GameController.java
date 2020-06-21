@@ -1,21 +1,20 @@
 package pjatk.pcwieka.gui.project.snakegame.application.controller;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pjatk.pcwieka.gui.project.snakegame.application.model.game.GameModel;
-import pjatk.pcwieka.gui.project.snakegame.application.model.game.DirectionProvider;
-import pjatk.pcwieka.gui.project.snakegame.application.model.game.FoodService;
-import pjatk.pcwieka.gui.project.snakegame.application.model.game.SnakeGameRenderer;
+import pjatk.pcwieka.gui.project.snakegame.domain.game.*;
 import pjatk.pcwieka.gui.project.snakegame.domain.enums.Direction;
-import pjatk.pcwieka.gui.project.snakegame.domain.game.GameFinishService;
-import pjatk.pcwieka.gui.project.snakegame.domain.game.GameTimeService;
 import pjatk.pcwieka.gui.project.snakegame.infrastructure.controller.StageInitializer;
 import pjatk.pcwieka.gui.project.snakegame.infrastructure.time.GameTimeProvider;
 import java.net.URL;
@@ -66,10 +65,29 @@ public class GameController implements Controller<GameModel> {
 
         });
 
+        QuitGameEventProvider quitGameEventProvider = new QuitGameEventProvider();
+
+        gamePane.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<>() {
+
+            final KeyCombination keyCodeCombination = new KeyCodeCombination(
+                KeyCode.Q,
+                KeyCombination.SHIFT_ANY,
+                KeyCombination.CONTROL_ANY
+            );
+
+            public void handle(KeyEvent keyEvent) {
+                if (keyCodeCombination.match(keyEvent)) {
+                    quitGameEventProvider.setQuitGame();
+                    keyEvent.consume();
+                }
+            }
+        });
+
         FoodService foodService = new FoodService(graphicsContext, gameModel);
 
         new GameTimeService(
             gameTimeProvider,
+            quitGameEventProvider,
             gameModel
         ).start();
 
@@ -78,12 +96,14 @@ public class GameController implements Controller<GameModel> {
             gameModel,
             foodService,
             directionProvider,
+            quitGameEventProvider,
             gameTimeProvider
         ).start();
 
         new GameFinishService(
             stageInitializer,
             gameTimeProvider,
+            quitGameEventProvider,
             gameModel,
             gamePane
         ).start();

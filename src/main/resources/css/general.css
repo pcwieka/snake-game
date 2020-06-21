@@ -1,0 +1,41 @@
+.background {
+    -fx-background-color: #3CA91D;
+}
+
+.snake-button {
+    -fx-font: 19px "Courier";
+    -fx-border-color: #FFFFFF;
+    -fx-border-width: 0 4 4 0;
+    -fx-text-fill: #FFFFFF;
+    -fx-padding: 10;
+    -fx-background-color: #000000;
+    -fx-pref-width: 200px;
+}
+
+.snake-button:hover {
+    -fx-background-color:lime;
+    -fx-text-fill: #000000;
+    -fx-border-color: black;
+    -fx-border-width: 0 4 4 0;
+}
+
+.snake-text {
+    -fx-font: 52px "Courier";
+    -fx-fill:radial-gradient(focus-angle 0deg, focus-distance 0%, center 100% 100%, radius 20%, reflect, darkgreen, yellow 100%, dimgray);
+    -fx-stroke: black;
+    -fx-stroke-width: 2px;
+}
+
+.default-text {
+    -fx-font: 25px "Courier";
+    -fx-fill:radial-gradient(focus-angle 0deg, focus-distance 0%, center 100% 100%, radius 20%, reflect, darkgreen, yellow 100%, dimgray);
+    -fx-stroke: black;
+    -fx-stroke-width: 2px;
+}
+
+.default-small-text {
+    -fx-font: 20px "Courier";
+    -fx-fill: white;
+    -fx-stroke: black;
+    -fx-stroke-width: 2px;
+}

@@ -1,4 +1,4 @@
-package pjatk.pcwieka.gui.project.snakegame.application.model.game;
+package pjatk.pcwieka.gui.project.snakegame.domain.game;
 
 import javafx.animation.AnimationTimer;
 import javafx.geometry.VPos;
@@ -6,6 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import pjatk.pcwieka.gui.project.snakegame.application.model.game.GameModel;
 import pjatk.pcwieka.gui.project.snakegame.domain.entity.Corner;
 import pjatk.pcwieka.gui.project.snakegame.domain.entity.Snake;
 import pjatk.pcwieka.gui.project.snakegame.infrastructure.time.GameTimeProvider;
@@ -20,6 +21,7 @@ public class SnakeGameRenderer extends AnimationTimer {
     private final GameModel gameModel;
     private final FoodService foodService;
     private final DirectionProvider directionProvider;
+    private final QuitGameEventProvider quitGameEventProvider;
     private final GameTimeProvider gameTimeProvider;
 
     public SnakeGameRenderer(
@@ -27,12 +29,14 @@ public class SnakeGameRenderer extends AnimationTimer {
         GameModel gameModel,
         FoodService foodService,
         DirectionProvider directionProvider,
+        QuitGameEventProvider quitGameEventProvider,
         GameTimeProvider gameTimeProvider
     ) {
         this.graphicsContext = graphicsContext;
         this.gameModel = gameModel;
         this.foodService = foodService;
         this.directionProvider = directionProvider;
+        this.quitGameEventProvider = quitGameEventProvider;
         this.gameTimeProvider = gameTimeProvider;
     }
 
@@ -52,6 +56,11 @@ public class SnakeGameRenderer extends AnimationTimer {
 
             lastAnimationUpdate = now ;
             renderNextMove();
+        }
+
+        if (quitGameEventProvider.isQuitGame()) {
+
+            this.stop();
         }
     }
 
@@ -107,8 +116,8 @@ public class SnakeGameRenderer extends AnimationTimer {
         foodService.eatFood();
 
         // game over
-        if (snakeHead.getY() < 0 || snakeHead.getY() > gameModel.getBoardHeight() ||
-            snakeHead.getX() < 0 || snakeHead.getX() > gameModel.getBoardWidth()) {
+        if (snakeHead.getY() < 0 || snakeHead.getY() >= gameModel.getBoardHeight() ||
+            snakeHead.getX() < 0 || snakeHead.getX() >= gameModel.getBoardWidth()) {
 
             gameModel.setGameOver();
         }
@@ -146,16 +155,16 @@ public class SnakeGameRenderer extends AnimationTimer {
 
         // food scored
         graphicsContext.setFill(Color.WHITE);
-        graphicsContext.setFont(new Font("", 15));
+        graphicsContext.setFont(new Font("", 18));
         graphicsContext.fillText("Food: " + gameModel.getFoodEaten(), 10, 30);
 
         // time
         graphicsContext.setFill(Color.WHITE);
-        graphicsContext.setFont(new Font("", 15));
+        graphicsContext.setFont(new Font("", 18));
 
         graphicsContext.fillText(
             gameTimeProvider.getGameTimeDurationAsString(),
-            gameModel.getBoardWidth() * gameModel.getCornerSize() - 50,
+            gameModel.getBoardWidth() * gameModel.getCornerSize() - 55,
             30
         );
 

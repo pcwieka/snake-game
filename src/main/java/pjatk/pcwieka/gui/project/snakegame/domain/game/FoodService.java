@@ -1,7 +1,8 @@
-package pjatk.pcwieka.gui.project.snakegame.application.model.game;
+package pjatk.pcwieka.gui.project.snakegame.domain.game;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import pjatk.pcwieka.gui.project.snakegame.application.model.game.GameModel;
 import pjatk.pcwieka.gui.project.snakegame.domain.entity.Corner;
 import pjatk.pcwieka.gui.project.snakegame.domain.entity.Food;
 import pjatk.pcwieka.gui.project.snakegame.domain.entity.Snake;

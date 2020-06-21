@@ -8,28 +8,28 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="218.0" prefWidth="349.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pjatk.pcwieka.gui.project.snakegame.application.controller.NewGameController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="389.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pjatk.pcwieka.gui.project.snakegame.application.controller.NewGameController">
    <center>
-      <VBox alignment="CENTER" prefHeight="205.0" prefWidth="337.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="205.0" prefWidth="337.0" styleClass="background" stylesheets="@../css/general.css" BorderPane.alignment="CENTER">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select grid size" textAlignment="CENTER">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default-text" text="Select grid size" textAlignment="CENTER">
                <VBox.margin>
                   <Insets bottom="10.0" top="15.0" />
                </VBox.margin>
             </Text>
             <HBox alignment="CENTER" prefHeight="57.0" prefWidth="305.0" spacing="10.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select width" />
-                  <Spinner fx:id="selectWidthSpinner" prefHeight="27.0" prefWidth="77.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default-small-text" text="Select width" />
+                  <Spinner fx:id="selectWidthSpinner" prefHeight="27.0" prefWidth="77.0" styleClass="spinner" stylesheets="@../css/spinner.css" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="57.0" prefWidth="305.0" spacing="9.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select height" />
-                  <Spinner fx:id="selectHeightSpinner" prefHeight="27.0" prefWidth="77.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="default-small-text" text="Select height" />
+                  <Spinner fx:id="selectHeightSpinner" prefHeight="27.0" prefWidth="77.0" styleClass="spinner" stylesheets="@../css/spinner.css" />
                </children>
             </HBox>
-            <Button fx:id="playButton" mnemonicParsing="false" onAction="#handlePlayButtonAction" prefHeight="27.0" prefWidth="70.0" text="Play">
+            <Button fx:id="playButton" mnemonicParsing="false" onAction="#handlePlayButtonAction" prefHeight="27.0" prefWidth="70.0" styleClass="snake-button" text="Play">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>

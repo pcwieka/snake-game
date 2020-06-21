@@ -6,10 +6,16 @@ import pjatk.pcwieka.gui.project.snakegame.infrastructure.time.GameTimeProvider;
 public class GameTimeService extends Thread {
 
     private GameTimeProvider gameTimeProvider;
+    private QuitGameEventProvider quitGameEventProvider;
     private GameModel gameModel;
 
-    public GameTimeService(GameTimeProvider gameTimeProvider, GameModel gameModel) {
+    public GameTimeService(
+        GameTimeProvider gameTimeProvider,
+        QuitGameEventProvider quitGameEventProvider,
+        GameModel gameModel
+    ) {
         this.gameTimeProvider = gameTimeProvider;
+        this.quitGameEventProvider = quitGameEventProvider;
         this.gameModel = gameModel;
     }
 
@@ -26,7 +32,7 @@ public class GameTimeService extends Thread {
                     (int)(System.currentTimeMillis() - startTime) / 1000
                 );
 
-                if (gameModel.isGameOver()) {
+                if (gameModel.isGameOver() || quitGameEventProvider.isQuitGame()) {
                     return;
                 }
 

@@ -1,0 +1,16 @@
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+    -fx-body-color: yellow;
+}
+
+.spinner .increment-arrow-button:hover,
+.spinner .decrement-arrow-button:hover {
+    -fx-body-color: ladder(#444, yellow 0%, red 100%);
+}
+
+.spinner .increment-arrow-button:hover:pressed,
+.spinner .decrement-arrow-button:hover:pressed,
+.spinner .increment-arrow-button:pressed,
+.spinner .decrement-arrow-button:pressed {
+    -fx-body-color: ladder(#AAA, yellow 0%, red 100%);
+}
