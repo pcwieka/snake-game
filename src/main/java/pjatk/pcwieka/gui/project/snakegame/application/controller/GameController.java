@@ -12,7 +12,7 @@ import javafx.scene.layout.*;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pjatk.pcwieka.gui.project.snakegame.application.model.game.GameModel;
+import pjatk.pcwieka.gui.project.snakegame.application.model.GameModel;
 import pjatk.pcwieka.gui.project.snakegame.domain.game.*;
 import pjatk.pcwieka.gui.project.snakegame.domain.enums.Direction;
 import pjatk.pcwieka.gui.project.snakegame.infrastructure.controller.StageInitializer;
@@ -102,7 +102,6 @@ public class GameController implements Controller<GameModel> {
 
         new GameFinishService(
             stageInitializer,
-            gameTimeProvider,
             quitGameEventProvider,
             gameModel,
             gamePane

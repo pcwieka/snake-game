@@ -1,6 +1,4 @@
-package pjatk.pcwieka.gui.project.snakegame.application.model.rankPlayer;
-
-import pjatk.pcwieka.gui.project.snakegame.application.model.Model;
+package pjatk.pcwieka.gui.project.snakegame.application.model;
 
 public class RankPlayerModel implements Model {
 

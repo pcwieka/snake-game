@@ -6,16 +6,19 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
-import pjatk.pcwieka.gui.project.snakegame.application.model.game.GameModel;
+import pjatk.pcwieka.gui.project.snakegame.application.model.GameModel;
 import pjatk.pcwieka.gui.project.snakegame.domain.entity.Corner;
 import pjatk.pcwieka.gui.project.snakegame.domain.entity.Snake;
+import pjatk.pcwieka.gui.project.snakegame.domain.enums.Direction;
 import pjatk.pcwieka.gui.project.snakegame.infrastructure.time.GameTimeProvider;
 import java.util.List;
+import java.util.Optional;
 
 public class SnakeGameRenderer extends AnimationTimer {
 
     private long lastAnimationUpdate = 0;
     private boolean isFirstFoodProvided = false;
+    private Optional<Direction> currentDirection = Optional.empty();
 
     private final GraphicsContext graphicsContext;
     private final GameModel gameModel;
@@ -52,7 +55,7 @@ public class SnakeGameRenderer extends AnimationTimer {
             isFirstFoodProvided = true;
         }
 
-        if (now - lastAnimationUpdate >= 1_000_000_000 / gameModel.getSpeed()) {
+        if (now - lastAnimationUpdate >= 1_700_000_000 / gameModel.getSpeed()) {
 
             lastAnimationUpdate = now ;
             renderNextMove();
@@ -82,7 +85,19 @@ public class SnakeGameRenderer extends AnimationTimer {
         
         Corner snakeHead = snakeBody.get(0);
 
-        switch (directionProvider.getDirection()) {
+        Direction newDirection = directionProvider.getDirection();
+
+        if (currentDirection.isPresent()) {
+
+            Direction currentDir = currentDirection.get();
+
+            if (currentDir == newDirection.opposite()) {
+
+                newDirection = currentDir;
+            }
+        }
+
+        switch (newDirection) {
 
             case UP:
 
@@ -112,6 +127,8 @@ public class SnakeGameRenderer extends AnimationTimer {
 
                 break;
         }
+
+        currentDirection = Optional.of(newDirection);
 
         foodService.eatFood();
 

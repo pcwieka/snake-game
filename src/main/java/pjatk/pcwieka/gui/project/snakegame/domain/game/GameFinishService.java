@@ -4,28 +4,24 @@ import javafx.application.Platform;
 import javafx.scene.Parent;
 import pjatk.pcwieka.gui.project.snakegame.application.controller.MainController;
 import pjatk.pcwieka.gui.project.snakegame.application.controller.RankPlayerController;
-import pjatk.pcwieka.gui.project.snakegame.application.model.game.GameModel;
-import pjatk.pcwieka.gui.project.snakegame.application.model.rankPlayer.RankPlayerModel;
+import pjatk.pcwieka.gui.project.snakegame.application.model.GameModel;
+import pjatk.pcwieka.gui.project.snakegame.application.model.RankPlayerModel;
 import pjatk.pcwieka.gui.project.snakegame.infrastructure.controller.StageInitializer;
-import pjatk.pcwieka.gui.project.snakegame.infrastructure.time.GameTimeProvider;
 
 public class GameFinishService extends Thread {
 
     private StageInitializer stageInitializer;
-    private GameTimeProvider gameTimeProvider;
     private QuitGameEventProvider quitGameEventProvider;
     private GameModel gameModel;
     private Parent ownerWindow;
 
     public GameFinishService(
         StageInitializer stageInitializer,
-        GameTimeProvider gameTimeProvider,
         QuitGameEventProvider quitGameEventProvider,
         GameModel gameModel,
         Parent ownerWindow
     ) {
         this.stageInitializer = stageInitializer;
-        this.gameTimeProvider = gameTimeProvider;
         this.quitGameEventProvider = quitGameEventProvider;
         this.gameModel = gameModel;
         this.ownerWindow = ownerWindow;
@@ -54,8 +50,7 @@ public class GameFinishService extends Thread {
                 if (gameModel.isGameOver()) {
 
                     ScoreEvaluationProvider scoreEvaluationProvider = new ScoreEvaluationProvider(
-                        gameModel,
-                        gameTimeProvider
+                        gameModel
                     );
 
                     RankPlayerModel rankPlayerModel = new RankPlayerModel(

@@ -1,6 +1,5 @@
-package pjatk.pcwieka.gui.project.snakegame.application.model.game;
+package pjatk.pcwieka.gui.project.snakegame.application.model;
 
-import pjatk.pcwieka.gui.project.snakegame.application.model.Model;
 import pjatk.pcwieka.gui.project.snakegame.domain.entity.Corner;
 import pjatk.pcwieka.gui.project.snakegame.domain.entity.Food;
 import pjatk.pcwieka.gui.project.snakegame.domain.entity.Snake;
@@ -10,7 +9,7 @@ public class GameModel implements Model {
     private final Snake snake = new Snake();
     private final int cornerSize = 25;
 
-    private int speed = 2;
+    private int speed = 5;
     private boolean isGameOver = false;
     private int foodEaten = 0;
 
@@ -62,7 +61,10 @@ public class GameModel implements Model {
     }
 
     public synchronized void reduceSpeed() {
-        this.speed--;
+
+        if (this.speed > 5) {
+            this.speed--;
+        }
     }
 
     public Snake getSnake() {

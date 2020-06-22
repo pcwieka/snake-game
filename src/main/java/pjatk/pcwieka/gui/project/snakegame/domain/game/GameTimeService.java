@@ -1,6 +1,6 @@
 package pjatk.pcwieka.gui.project.snakegame.domain.game;
 
-import pjatk.pcwieka.gui.project.snakegame.application.model.game.GameModel;
+import pjatk.pcwieka.gui.project.snakegame.application.model.GameModel;
 import pjatk.pcwieka.gui.project.snakegame.infrastructure.time.GameTimeProvider;
 
 public class GameTimeService extends Thread {

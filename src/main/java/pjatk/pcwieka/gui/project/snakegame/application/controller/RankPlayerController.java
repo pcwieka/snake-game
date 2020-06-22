@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pjatk.pcwieka.gui.project.snakegame.application.model.rankPlayer.RankPlayerModel;
+import pjatk.pcwieka.gui.project.snakegame.application.model.RankPlayerModel;
 import pjatk.pcwieka.gui.project.snakegame.domain.entity.Score;
 import pjatk.pcwieka.gui.project.snakegame.domain.repository.ScoreRepository;
 import pjatk.pcwieka.gui.project.snakegame.infrastructure.controller.StageInitializer;
@@ -59,14 +59,20 @@ public class RankPlayerController implements Controller<RankPlayerModel> {
     @FXML
     private void handleOkayButtonAction() {
 
-        if (rankPlayerModel.getFinalScore() > 0) {
-            savePlayerScore();
+        if (enterYourNameTextField.getText().isBlank() && !enterYourNameTextField.isDisabled()) {
+            enterYourNameTextField.setPromptText("Enter your name!");
+
+        } else {
+
+            if (rankPlayerModel.getFinalScore() > 0) {
+                savePlayerScore();
+            }
+
+            stageInitializer.initialize(MainController.class);
+
+            Stage stage = (Stage) scoreText.getScene().getWindow();
+            stage.close();
         }
-
-        stageInitializer.initialize(MainController.class);
-
-        Stage stage = (Stage) scoreText.getScene().getWindow();
-        stage.close();
     }
 
     private void savePlayerScore() {

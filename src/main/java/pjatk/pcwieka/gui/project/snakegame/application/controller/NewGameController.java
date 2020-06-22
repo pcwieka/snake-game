@@ -6,7 +6,7 @@ import javafx.scene.control.SpinnerValueFactory;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pjatk.pcwieka.gui.project.snakegame.application.model.game.GameModel;
+import pjatk.pcwieka.gui.project.snakegame.application.model.GameModel;
 import pjatk.pcwieka.gui.project.snakegame.application.model.Model;
 import pjatk.pcwieka.gui.project.snakegame.infrastructure.controller.StageInitializer;
 import java.net.URL;
@@ -33,12 +33,12 @@ public class NewGameController implements Controller {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         SpinnerValueFactory<Integer> widthSpinnerValueFactory =
-            new SpinnerValueFactory.IntegerSpinnerValueFactory(20, 60, 20, 5);
+            new SpinnerValueFactory.IntegerSpinnerValueFactory(10, 50, 20, 5);
 
         selectWidthSpinner.setValueFactory(widthSpinnerValueFactory);
 
         SpinnerValueFactory<Integer> heightSpinnerValueFactory =
-            new SpinnerValueFactory.IntegerSpinnerValueFactory(20, 60, 20, 5);
+            new SpinnerValueFactory.IntegerSpinnerValueFactory(10, 50, 20, 5);
 
         selectHeightSpinner.setValueFactory(heightSpinnerValueFactory);
     }

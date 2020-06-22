@@ -1,11 +1,10 @@
-package pjatk.pcwieka.gui.project.snakegame.application.model.highScores;
+package pjatk.pcwieka.gui.project.snakegame.application.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import pjatk.pcwieka.gui.project.snakegame.application.model.Model;
 import pjatk.pcwieka.gui.project.snakegame.domain.entity.Score;
 import pjatk.pcwieka.gui.project.snakegame.domain.repository.ScoreRepository;
 import java.util.Comparator;

@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pjatk.pcwieka.gui.project.snakegame.application.model.highScores.HighScoresModel;
+import pjatk.pcwieka.gui.project.snakegame.application.model.HighScoresModel;
 import pjatk.pcwieka.gui.project.snakegame.domain.repository.ScoreRepository;
 import pjatk.pcwieka.gui.project.snakegame.infrastructure.controller.StageInitializer;
 import java.net.URL;
